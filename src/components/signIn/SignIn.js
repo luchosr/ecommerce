@@ -2,41 +2,43 @@ import React, { useState } from "react";
 import "./SignInStyles.scss";
 
 const SignIn = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [state, setState] = useState({
+    email: "",
+    password: "",
+  });
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setEmail("");
-    setPassword("");
+    setState({
+      email: "",
+      password: "",
+    });
   };
 
-  const handleEmail = (event) => {
-    setEmail(event.target.value);
+  const handleChange = (event) => {
+    const { value, name } = event.target;
+    setState({ [name]: value });
   };
 
-  const handlePassword = (event) => {
-    setPassword(event.target.value);
-  };
   return (
     <div className="sign-in">
       <h2>I already have an account</h2>
       <span>Sign in with your email and passsword</span>
-      <form action="">
+      <form onSubmit={handleSubmit}>
         <input
           name="email"
           type="email"
-          value={email}
+          value={state.email}
           required
-          onChange={handleEmail}
+          onChange={handleChange}
         />
         <label>Email</label>
         <input
           name="password"
           type="password"
-          value={password}
+          value={state.password}
           required
-          onChange={handlePassword}
+          onChange={handleChange}
         />
         <label>Password</label>
 
