@@ -8,32 +8,41 @@ import Shop from "./pages/shop/Shop";
 import Header from "./components/header/Header";
 import SignInUp from "./pages/signInUp/SignInUp";
 import { auth } from "./firebase/firebase.utils";
+class App extends React.Component {
+  constructor() {
+    super();
 
-function App() {
-  const [currentUser, setCurrentUser] = useState(null);
+    this.state = {
+      currentUser: null,
+    };
+  }
 
-  let unsubscribeFromAuth = null;
+  unsubscribeFromAuth = null;
 
-  useEffect(() => {
-    unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
-      setCurrentUser(user);
-      console.log("el user es", user);
-      return function cleanup() {
-        unsubscribeFromAuth();
-      };
+  componentDidMount() {
+    this.unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
+      this.setState({ currentUser: user });
+
+      console.log(user);
     });
-  }, []);
+  }
 
-  return (
-    <div>
-      <Header />
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/shop" component={Shop} />
-        <Route path="/signin" component={SignInUp} />
-      </Switch>
-    </div>
-  );
+  componentWillUnmount() {
+    this.unsubscribeFromAuth();
+  }
+
+  render() {
+    return (
+      <div>
+        <Header currentUser={this.state.currentUser} />
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route path="/shop" component={Shop} />
+          <Route path="/signin" component={SignInUp} />
+        </Switch>
+      </div>
+    );
+  }
 }
 
 export default App;
