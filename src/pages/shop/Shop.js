@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import SHOP_DATA from "./shop.data";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 import PreviewCollection from "../../components/collectionPreview/CollectionPreview";
 import CollectionPreview from "../../components/collectionPreview/CollectionPreview";
 
-const Shop = (props) => {
-  const [collections, setCollections] = useState(SHOP_DATA);
+import { selectCollections } from "../../redux/shop/shopSelector";
+const Shop = ({ collections }) => {
   return (
     <div className="shop-page">
       {collections.map(({ id, ...otherCollectionProps }) => (
@@ -13,5 +14,9 @@ const Shop = (props) => {
     </div>
   );
 };
+
+const mapStateToProps = createStructuredSelector({
+  collections: selectCollections,
+});
 
 export default Shop;
