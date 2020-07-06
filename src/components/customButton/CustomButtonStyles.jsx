@@ -33,7 +33,7 @@ export const googleSignInStyles = css`
 `;
 
 const getButtonStykes = (props) => {
-  if (props.googleSignIn) {
+  if (props.isGoogleSignIn) {
     return googleSignInStyles;
   }
   return props.inverted ? InvertedButtonStyles : buttonStyles;
