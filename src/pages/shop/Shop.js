@@ -1,19 +1,26 @@
 import React from "react";
 import { Route } from "react-router-dom";
+import { connect } from "react-redux";
+import { updateCollections } from "../../redux/shop/shopActions";
 
 import Collection from "../collection/Collection";
 import CollectionsOverview from "../../components/collectionsOverview/CollectionsOverview";
 import { firestore } from "../../firebase/firebase.utils";
+import { updateCollections } from "../../redux/shop/shopActions";
 
 class Shop extends React.Component {
   unsubscribeFromSnapshot = null;
 
   componentDidMount() {
+    const { updateCollections } = this.props;
     const collectionRef = firestore.collection("collections");
 
-    collectionRef.onSnapshot(async (snapshot) => {
-      console.log(snapshot);
-    });
+    this.unsubscribeFromSnapshot = collectionRef.onSnapshot(
+      async (snapshot) => {
+        const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
+        updateCollections(collectionsMap);
+      }
+    );
   }
   render() {
     const { match } = this.props;
@@ -29,5 +36,9 @@ class Shop extends React.Component {
     );
   }
 }
+const mapDispatchToProps = (dispatch) => ({
+  updatgeCollections: (collectionsMap) =>
+    dispatch(updateCollections(collectionsMap)),
+});
 
-export default Shop;
+export default connect(null, mapDispatchToProps)(Shop);
