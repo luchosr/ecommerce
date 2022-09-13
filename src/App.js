@@ -6,6 +6,7 @@ import './App.css';
 
 import Home from './routes/home/home.component';
 import Navigation from './routes/navigation/navigation.component';
+import SignIn from './routes/sign-In/sign-in.component';
 import Checkout from './pages/checkout/Checkout';
 import Shop from './pages/shop/Shop';
 import Header from './components/header/Header';
@@ -48,6 +49,8 @@ class App extends React.Component {
           <Route path='/' element={<Navigation />}>
             <Route index element={<Home />} />
             <Route path='shop' element={<Shop />} />
+            <Route path='sign-in' element={<SignIn />} />
+
             {/* <Route
               exact
               path='signin'
