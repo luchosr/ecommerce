@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import './App.css';
 
 import HomePage from './pages/homePage/HomePage';
+import Navigation from './routes/navigation/navigation.component';
 import Checkout from './pages/checkout/Checkout';
 import Shop from './pages/shop/Shop';
 import Header from './components/header/Header';
@@ -44,16 +45,16 @@ class App extends React.Component {
       <div>
         <Header />
         <Routes>
-          <Route exact path='/' component={HomePage}>
-            <Route path='shop' component={Shop} />
-            <Route exact path='checkout' component={Checkout} />
-            <Route
+          <Route path='/' element={<Navigation />}>
+            <Route index element={<Home />} />
+            <Route path='shop' element={<Shop />} />
+            {/* <Route
               exact
               path='signin'
               render={() =>
                 this.props.currentUser ? <Navigate to='/' /> : <SignInUp />
               }
-            />
+            /> */}
           </Route>
         </Routes>
       </div>
