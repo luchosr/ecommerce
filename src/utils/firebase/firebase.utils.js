@@ -1,4 +1,24 @@
-// import firebase from "firebase/app";
+import { initializeApp } from 'firebase/app';
+import {
+  getAuth,
+  signInWithRedirect,
+  signInWithPopup,
+  GoogleAuthProvider,
+} from 'firebase/auth';
+
+const firebaseConfig = {
+  apiKey: 'AIzaSyCAMU9hOOWaDRxGZjaIPNSPvEUAXwfsAPM',
+  authDomain: 'crwn-db-244a8.firebaseapp.com',
+  databaseURL: 'https://crwn-db-244a8.firebaseio.com',
+  projectId: 'crwn-db-244a8',
+  storageBucket: 'crwn-db-244a8.appspot.com',
+  messagingSenderId: '646489910223',
+  appId: '1:646489910223:web:3f86c64ecf76bc32bf00ba',
+  measurementId: 'G-VDZRCKCMCF',
+};
+
+// Initialize Firebase
+const firebaseApp = initializeApp(firebaseConfig);
 // import "firebase/firestore";
 // import "firebase/auth";
 
