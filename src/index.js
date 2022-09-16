@@ -7,7 +7,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import './index.scss';
 import App from './App';
 import { UserProvider } from './context/user.context';
-import { ProductsProvider } from './context/products.conetxt';
+import { ProductsProvider } from './context/products.context';
 
 import { store, persistor } from './redux/store';
 
