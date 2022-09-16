@@ -7,6 +7,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import './index.scss';
 import App from './App';
 import { UserProvider } from './context/user.context';
+import { ProductsProvider } from './context/products.conetxt';
 
 import { store, persistor } from './redux/store';
 
@@ -15,9 +16,11 @@ ReactDOM.render(
     {/* <Provider store={store}> */}
     <BrowserRouter>
       <UserProvider>
-        <PersistGate persistor={persistor}>
-          <App />
-        </PersistGate>
+        <ProductsProvider>
+          <PersistGate persistor={persistor}>
+            <App />
+          </PersistGate>
+        </ProductsProvider>
       </UserProvider>
     </BrowserRouter>
     {/* </Provider> */}
