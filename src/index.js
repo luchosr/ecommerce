@@ -8,6 +8,7 @@ import './index.scss';
 import App from './App';
 import { UserProvider } from './context/user.context';
 import { ProductsProvider } from './context/products.context';
+import { CartProvider } from './context/cart.context';
 
 import { store, persistor } from './redux/store';
 
@@ -17,9 +18,11 @@ ReactDOM.render(
     <BrowserRouter>
       <UserProvider>
         <ProductsProvider>
-          <PersistGate persistor={persistor}>
-            <App />
-          </PersistGate>
+          <CartProvider>
+            <PersistGate persistor={persistor}>
+              <App />
+            </PersistGate>
+          </CartProvider>
         </ProductsProvider>
       </UserProvider>
     </BrowserRouter>
