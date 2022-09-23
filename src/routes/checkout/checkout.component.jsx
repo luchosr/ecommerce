@@ -29,7 +29,7 @@ const Checkout = () => {
         </div>
       </div>
       <h1>Iam the checkout page</h1>
-      <div className=''>
+      <div>
         {cartItems.map((cartItem) => {
           return <CheckoutItem key={cartItem.id} cartItem={cartItem} />;
         })}
