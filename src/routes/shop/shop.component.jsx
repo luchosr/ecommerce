@@ -7,14 +7,16 @@ import { CategoriesContext } from "../../context/categories.context";
 import "./shop.styles.scss";
 
 const Shop = () => {
-  const { products } = useContext(CategoriesContext);
+  const { categoriesMap } = useContext(CategoriesContext);
 
   return (
-    <div className="products-container">
-      {products.map((product) => (
+    <>
+      <div className="products-container">
+        {/* {products.map((product) => (
         <ProductCard key={product.id} product={product} />
-      ))}
-    </div>
+      ))} */}
+      </div>
+    </>
   );
 };
 
