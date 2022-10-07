@@ -1,30 +1,28 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render } from "react-dom";
 import { BrowserRouter } from "react-router-dom";
-import { PersistGate } from "redux-persist/integration/react";
+import { Provider } from "react-redux";
+
+import App from "./App";
+import { CategoriesProvider } from "./contexts/categories.context";
+import { CartProvider } from "./contexts/cart.context";
+import { store } from "./store/store";
 
 import "./index.scss";
-import App from "./App";
-import { UserProvider } from "./context/user.context";
-import { CategoriesProvider } from "./context/categories.context";
-import { CartProvider } from "./context/cart.context";
 
-import { store, persistor } from "./redux/store";
+const rootElement = document.getElementById("root");
 
-ReactDOM.render(
+render(
   <React.StrictMode>
-    <BrowserRouter>
-      <UserProvider>
+    <Provider store={store}>
+      <BrowserRouter>
         <CategoriesProvider>
           <CartProvider>
-            <PersistGate persistor={persistor}>
-              <App />
-            </PersistGate>
+            <App />
           </CartProvider>
         </CategoriesProvider>
-      </UserProvider>
-    </BrowserRouter>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>,
-
-  document.getElementById("root")
+  rootElement
 );
