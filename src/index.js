@@ -15,13 +15,13 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <UserProvider>
-        {/* <CategoriesProvider> */}
-        <CartProvider>
-          <PersistGate persistor={persistor}>
-            <App />
-          </PersistGate>
-        </CartProvider>
-        {/* </CategoriesProvider> */}
+        <CategoriesProvider>
+          <CartProvider>
+            <PersistGate persistor={persistor}>
+              <App />
+            </PersistGate>
+          </CartProvider>
+        </CategoriesProvider>
       </UserProvider>
     </BrowserRouter>
   </React.StrictMode>,
