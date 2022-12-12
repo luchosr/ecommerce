@@ -1,15 +1,15 @@
 import React from "react";
 
-import './form-input.styles.scss';
+import "./form-input.styles.jsx";
 
 const FormInput = ({ label, ...otherProps }) => {
   return (
-    <div className='group'>
-      <input className='form-input' {...otherProps} />
+    <div className="group">
+      <input className="form-input" {...otherProps} />
       {label && (
         <label
           className={`${
-            otherProps.value.length ? 'shrink' : ''
+            otherProps.value.length ? "shrink" : ""
           } form-input-label`}
         >
           {label}
