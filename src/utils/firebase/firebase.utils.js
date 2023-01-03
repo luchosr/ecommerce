@@ -1,4 +1,4 @@
-import { initializeApp } from 'firebase/app';
+import { initializeApp } from "firebase/app";
 import {
   getAuth,
   signInWithRedirect,
@@ -8,7 +8,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
-} from 'firebase/auth';
+} from "firebase/auth";
 import {
   getFirestore,
   doc,
@@ -18,17 +18,17 @@ import {
   collection,
   writeBatch,
   query,
-} from 'firebase/firestore';
+} from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyCAMU9hOOWaDRxGZjaIPNSPvEUAXwfsAPM',
-  authDomain: 'crwn-db-244a8.firebaseapp.com',
-  databaseURL: 'https://crwn-db-244a8.firebaseio.com',
-  projectId: 'crwn-db-244a8',
-  storageBucket: 'crwn-db-244a8.appspot.com',
-  messagingSenderId: '646489910223',
-  appId: '1:646489910223:web:3f86c64ecf76bc32bf00ba',
-  measurementId: 'G-VDZRCKCMCF',
+  apiKey: "AIzaSyCAMU9hOOWaDRxGZjaIPNSPvEUAXwfsAPM",
+  authDomain: "crwn-db-244a8.firebaseapp.com",
+  databaseURL: "https://crwn-db-244a8.firebaseio.com",
+  projectId: "crwn-db-244a8",
+  storageBucket: "crwn-db-244a8.appspot.com",
+  messagingSenderId: "646489910223",
+  appId: "1:646489910223:web:3f86c64ecf76bc32bf00ba",
+  measurementId: "G-VDZRCKCMCF",
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
@@ -36,7 +36,7 @@ const firebaseApp = initializeApp(firebaseConfig);
 const googleProvider = new GoogleAuthProvider();
 
 googleProvider.setCustomParameters({
-  prompt: 'select_account',
+  prompt: "select_account",
 });
 
 export const auth = getAuth();
@@ -60,11 +60,11 @@ export const addCollectionAndDocuments = async (
   });
 
   await batch.commit();
-  console.log('done');
+  console.log("done");
 };
 
 export const getCategoriesAndDocuments = async () => {
-  const collectionRef = collection(db, 'categories');
+  const collectionRef = collection(db, "categories");
   const q = query(collectionRef);
 
   const querySnapshot = await getDocs(q);
@@ -83,7 +83,7 @@ export const createUserDocumentFromAuth = async (
 ) => {
   if (!userAuth) return;
 
-  const userDocRef = doc(db, 'users', userAuth.uid);
+  const userDocRef = doc(db, "users", userAuth.uid);
 
   const userSnapshot = await getDoc(userDocRef);
 
@@ -99,7 +99,7 @@ export const createUserDocumentFromAuth = async (
         ...additionalInformation,
       });
     } catch (error) {
-      console.log('error creating the user', error.message);
+      console.log("error creating the user", error.message);
     }
   }
 
