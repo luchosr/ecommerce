@@ -1,12 +1,12 @@
-import { useState, useEffect, Fragment } from "react";
-import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useState, useEffect, Fragment } from 'react';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
-import ProductCard from "../../components/product-card/product-card.component";
+import ProductCard from '../../components/product-card/product-card.component';
 
-import { selectCategoriesMap } from "../../store/categories/category.selector";
+import { selectCategoriesMap } from '../../store/categories/category.selector';
 
-import { CategoryContainer, Title } from "./category.styles";
+import { CategoryContainer, Title } from './category.styles';
 
 const Category = () => {
   const { category } = useParams();
